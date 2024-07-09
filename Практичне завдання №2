@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+// Функція для обчислення НСД двох чисел
+int gcd(int a, int b) {
+    while (b) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Функція для обчислення НСК двох чисел
+int lcm(int a, int b) {
+    return a * (b / gcd(a, b));
+}
+
+int main() {
+    int n;
+    
+    // Введення кількості чисел
+    scanf("%d", &n);
+
+    int result, num;
+    
+    // Введення першого числа
+    scanf("%d", &result);
+
+    // Обчислення НСК для решти чисел
+    for (int i = 1; i < n; i++) {
+        scanf("%d", &num);
+        result = lcm(result, num);
+    }
+
+    // Виведення результату
+    printf("%d\n", result);
+
+    return 0;
+}
