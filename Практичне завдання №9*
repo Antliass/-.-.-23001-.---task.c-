@@ -1,0 +1,21 @@
+def min_steps(x, y):
+    if x > y:
+        return float('inf')  # якщо x > y, то ми не можемо зробити перехід, повертаємо нескінченність
+    
+    dp = [float('inf')] * (y + 1)
+    dp[x] = 0
+    
+    for i in range(x, y + 1):
+        if dp[i] == float('inf'):
+            continue
+        for step in [1, 2]:
+            if i + step <= y:
+                dp[i + step] = min(dp[i + step], dp[i] + 1)
+    
+    return dp[y]
+
+# Приклади використання
+print(min_steps(45, 48))  # 3
+print(min_steps(45, 49))  # 3
+print(min_steps(45, 50))  # 4
+print(min_steps(45, 51))  # 4
